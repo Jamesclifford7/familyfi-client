@@ -3,6 +3,8 @@ import { TextField, Button } from '@mui/material'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom';
 import '../../fonts/index.css'
+import piggyBankIcon from '../images/piggybank2.png'
+
 
 interface LoginProps {
     email: string
@@ -28,10 +30,13 @@ export default function LandingPage() {
     }
 
     return (
-        <>
+        <Container>
             <Top>
-                <Logo>FamilyFi</Logo>
-                <p>The Credit Card for Childrearing</p>
+                <LogoContainer>
+                    <Logo>FamilyFi</Logo>
+                    <PiggyBank src={piggyBankIcon} />
+                </LogoContainer>
+                <p>The Credit Card Designed For Young Families</p>
             </Top>
             <StyledHeader>Sign In</StyledHeader>
             <form onSubmit={(e) => handleLogin(e)}>
@@ -74,8 +79,7 @@ export default function LandingPage() {
                 <p>Email: demo@familyfi.com</p>
                 <p>Password: Password1</p>
             </CredentialsContainer>
-
-        </>
+        </Container>
     )
 }
 
@@ -89,8 +93,12 @@ function UserNotFound(props: {userNotFoundMessage: string | undefined}) {
     )
 }
 
+const Container = styled.div`
+    height: 100vh; 
+`
+
 const Top = styled.div`
-    margin-top: 50px; 
+    padding-top: 50px; 
     display: flex; 
     flex-direction: row; 
     justify-content: space-around; 
@@ -99,6 +107,7 @@ const Top = styled.div`
     p {
         display: inline-block; 
         font-weight: bold; 
+        font-family: "Josefin Sans", sans-serif;
         font-style: italic; 
     }
 `
@@ -106,6 +115,17 @@ const Top = styled.div`
 const Logo = styled.h1`
     font-family: "Josefin Sans", sans-serif;
     display: inline-block; 
+`
+
+const PiggyBank = styled.img`
+    display: inline-block; 
+    height: 50px; 
+    margin-left: 30px; 
+`
+
+const LogoContainer = styled.div`
+    display: flex; 
+    align-items: center; 
 `
 
 const StyledHeader = styled.h2`

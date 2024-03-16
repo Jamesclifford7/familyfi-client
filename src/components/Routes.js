@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes, Route} from 'react-router-dom';
 import Landing from './Landing'
-import Overview from './Overview'
+import AccountOverview from './AccountOverview'
 
 export default function AppRoutes() {
     return (
@@ -12,7 +12,7 @@ export default function AppRoutes() {
             />
             <Route 
                 path="/account_overview"
-                element={<Overview />}
+                element={<AccountOverview />}
             />
         </Routes>
     )
