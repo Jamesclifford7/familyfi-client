@@ -10,14 +10,21 @@ interface LoginProps {
 }
 
 export default function LandingPage() {
+    const [userNotFoundMessage, setUserNotFoundMessage] = useState<string>()
+    const navigate = useNavigate()
 
     const handleLogin = (e: any) => {
         e.preventDefault()
         const email: LoginProps["email"] = e.target.email.value
         const password: LoginProps["password"] = e.target.password.value
 
-        console.log(email)
-        console.log(password)
+        if (email === "demo@familyfi.com" && password === "Password1") {
+            // account overview
+            navigate('/account_overview'); 
+            setUserNotFoundMessage(""); 
+        } 
+
+        setUserNotFoundMessage("User not found"); 
     }
 
     return (
@@ -41,6 +48,7 @@ export default function LandingPage() {
                     <StyledTextField
                         label="Password"
                         name="password"
+                        type="password"
                         sx={{
                             backgroundColor: "#ffffff"
                         }}
@@ -60,6 +68,7 @@ export default function LandingPage() {
                     Submit
                 </StyledButton>
             </form>
+            <UserNotFound userNotFoundMessage={userNotFoundMessage} />
             <CredentialsContainer>
                 <h3>Demo Credentials:</h3>
                 <p>Email: demo@familyfi.com</p>
@@ -67,6 +76,16 @@ export default function LandingPage() {
             </CredentialsContainer>
 
         </>
+    )
+}
+
+function UserNotFound(props: {userNotFoundMessage: string | undefined}) {
+    if (!props.userNotFoundMessage) {
+        return null
+    }
+
+    return (
+        <UserNotFoundContainer>{props.userNotFoundMessage}</UserNotFoundContainer>
     )
 }
 
@@ -105,6 +124,10 @@ const TextFieldContainer = styled.div`
 
 const StyledButton = styled(Button)`
     background-color: #64F58D; 
+`
+
+const UserNotFoundContainer = styled.div`
+    margin-top: 20px;   
 `
 
 const CredentialsContainer = styled.div`
