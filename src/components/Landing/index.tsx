@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom';
 import '../../fonts/index.css'
 import piggyBankIcon from '../images/piggybank2.png'
-
+import axios from 'axios'
 
 interface LoginProps {
     email: string
@@ -20,13 +20,45 @@ export default function LandingPage() {
         const email: LoginProps["email"] = e.target.email.value
         const password: LoginProps["password"] = e.target.password.value
 
-        if (email === "demo@familyfi.com" && password === "Password1") {
-            // account overview
-            navigate('/account_overview'); 
-            setUserNotFoundMessage(""); 
-        } 
+        axios({
+            method: 'post', 
+            url: `${process.env.REACT_APP_API_URL}/login`, 
+            headers: {
+                'content-type': 'application/json'
+            },
+            data: {
+                email: email, 
+                password: password
+            },
+        })
+        .then((res) => {
+            if (res.data === "User not found") {
+                setUserNotFoundMessage("User not found")
+            }
 
-        setUserNotFoundMessage("User not found"); 
+            // const user = {
+            //     id: res.data[0].id, 
+            //     email: res.data[0].email,
+            // }
+
+            console.log(res.data[0])
+
+            // window.localStorage.setItem('user', JSON.stringify(user)); 
+            // context.setUser(user); 
+            // navigate('/'); 
+
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+
+        // if (email === "demo@familyfi.com" && password === "Password1") {
+        //     // account overview
+        //     navigate('/account_overview'); 
+        //     setUserNotFoundMessage(""); 
+        // } 
+
+        // setUserNotFoundMessage("User not found"); 
     }
 
     return (
@@ -77,7 +109,7 @@ export default function LandingPage() {
             <CredentialsContainer>
                 <h3>Demo Credentials:</h3>
                 <p>Email: demo@familyfi.com</p>
-                <p>Password: Password1</p>
+                <p>Password: Password!1</p>
             </CredentialsContainer>
         </Container>
     )
