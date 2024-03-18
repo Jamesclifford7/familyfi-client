@@ -55,7 +55,7 @@ export default function AccountOverview() {
                     </div>
                 </OverviewRight>
             </OverviewContainer>
-            <ContentContainer>
+            <BalanceContainer>
                 <h3>Balance Information</h3>
                 <Information>
                     <BalanceSection>
@@ -78,8 +78,8 @@ export default function AccountOverview() {
                         <span>$1,000.00</span>
                     </BalanceSection>
                 </Information>
-            </ContentContainer>
-            <ContentContainer>
+            </BalanceContainer>
+            <ActivityDesktop>
                 <h3>Activity</h3>
                 <Information>
                     <h4>Posted Transactions</h4>
@@ -139,26 +139,53 @@ export default function AccountOverview() {
                         </ActivityRight>
                     </ActivityContainer>
                 </Information>
-            </ContentContainer>
+            </ActivityDesktop>
+            <ActivityMobile>
+                <h3>Activity</h3>
+                <Information>
+                    <ActivityContainer>
+                        <h5>H&M</h5>
+                        <span>$50.00</span>
+                    </ActivityContainer>
+                    <ActivityContainer>
+                        <h5>Target</h5>
+                        <span>$50.00</span>
+                    </ActivityContainer>
+                    <ActivityContainer>
+                        <h5>Sprouts</h5>
+                        <span>$40.00</span>
+                    </ActivityContainer>
+                    <ActivityContainer>
+                        <h5>Shell</h5>
+                        <span>$60.00</span>
+                    </ActivityContainer>
+                </Information>
+            </ActivityMobile>
         </>
     )
 }
 
 const Header = styled.h1`
-    padding-top: 50px; 
-    padding-bottom: 20px; 
+    padding: 50px 0; 
+    margin: 0; 
 `
 
 const ActionNav = styled.div`
     display: flex; 
-    flex-direction: row; 
+    flex-direction: column; 
     justify-content: center; 
+
+    @media all and (min-width: 515px) {
+        flex-direction: row; 
+        width: 100%; 
+    }
 `
 
 const StyledLink = styled(Link)`
     text-decoration: none; 
     color: #000000; 
-    margin-right: 50px; 
+    margin-bottom: 20px; 
+    margin-right: 0; 
 
     svg {
         margin-right: 10px; 
@@ -167,21 +194,32 @@ const StyledLink = styled(Link)`
     &:hover {
         text-decoration: underline; 
     }
+
+    @media all and (min-width: 515px) {
+        margin-right: 50px; 
+        margin-bottom: 0; 
+    }
 `
 
 const OverviewContainer = styled.div`
     display: flex; 
-    flex-direction: row; 
+    flex-direction: column; 
     justify-content: space-around; 
     margin-top: 75px; 
+    align-items: center; 
+
+    @media all and (min-width: 515px) {
+        flex-direction: row;
+    }
 `
 
 const OverviewLeft = styled.div`
     border: solid 2px #000000; 
     border-radius: 20px; 
-    width: 40%; 
+    width: 90%; 
     padding: 50px 0; 
     background-color: #ffffff; 
+
     div {
         display: flex; 
         justify-content: center; 
@@ -200,32 +238,38 @@ const OverviewLeft = styled.div`
     span {
         margin-right: 20px; 
     }
+
+    @media all and (min-width: 515px) {
+        width: 40%; 
+    }
 `
 
 const OverviewRight = styled.div`
-    width: 40%; 
+    width: 90%; 
+    margin-top: 50px; 
     div {
         width: 50%; 
         display: inline-block; 
     }
+
+    @media all and (min-width: 515px) {
+        width: 40%; 
+        margin-top: 0; 
+    }
 `
 
-const ContentContainer = styled.div`
+const BalanceContainer = styled.div`
     margin: 0 auto; 
     margin-top: 75px; 
     width: 80%;
 
     h3 {
-        text-align: left; 
-    }
-`
+        text-align: center; 
 
-const Information = styled.div`
-    border: solid 0.5px; 
-    width: 80%; 
-    margin: 0 auto; 
-    margin-top: 75px; 
-    background-color: #ffffff; 
+        @media all and (min-width: 915px) {
+            text-align: left; 
+        }
+    }
 `
 
 const BalanceSection = styled.div`
@@ -234,10 +278,7 @@ const BalanceSection = styled.div`
     justify-content: space-between;
     align-items: center;  
     background-color: #ffffff; 
-
-    h4, span {
-        margin: 25px;  
-    }
+    margin: 20px; 
 
     a {
         text-decoration: none; 
@@ -249,10 +290,53 @@ const BalanceSection = styled.div`
     }
 `
 
+const Information = styled.div`
+    border: solid 0.5px; 
+    width: 100%; 
+    margin: 0 auto; 
+    margin-top: 75px; 
+    background-color: #ffffff; 
+
+    @media all and (min-width: 415px) {
+        width: 90%; 
+    }
+`
+
+const ActivityDesktop = styled.div`
+    margin: 0 auto; 
+    margin-top: 75px; 
+    width: 80%;
+    display: none; 
+
+    h3 {
+        text-align: left; 
+    }
+
+    @media all and (min-width: 915px) {
+        display: inherit; 
+    }
+`
+
+const ActivityMobile = styled.div`
+    margin: 0 auto; 
+    margin-top: 75px; 
+    width: 80%;
+    display: inherit; 
+
+    h3 {
+        text-aline: center; 
+    }
+
+    @media all and (min-width: 915px) {
+        display: none; 
+    }
+`
+
 const ActivityContainer = styled.div`
     display: flex; 
     flex-direction: row; 
     justify-content: space-between; 
+    margin: 20px; 
 
     h5, span {
         display: inline-block; 
