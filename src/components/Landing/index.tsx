@@ -38,7 +38,7 @@ export default function LandingPage() {
 
             window.localStorage.setItem('user', res.data.token)
             setUserNotFoundMessage(""); 
-            navigate('/'); 
+            navigate('/account_overview'); 
         })
         .catch((error) => {
             console.log(error)
