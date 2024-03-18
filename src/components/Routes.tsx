@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route, Navigate} from 'react-router-dom';
 import Landing from './Landing'
 import AccountOverview from './AccountOverview'
+import Marketplace from './Marketplace';
 
 interface ProtectedRouteProps {
     isAuthorized: () => boolean;
@@ -22,6 +23,16 @@ export default function AppRoutes() {
                         isAuthorized={isAuthorized}
                     >
                         <AccountOverview />
+                    </ProtectedRoute>
+                }
+            />
+            <Route 
+                path="/marketplace"
+                element={
+                    <ProtectedRoute
+                        isAuthorized={isAuthorized}
+                    >
+                        <Marketplace />
                     </ProtectedRoute>
                 }
             />

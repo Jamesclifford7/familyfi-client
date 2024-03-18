@@ -165,7 +165,7 @@ export default function AccountOverview() {
     )
 }
 
-const Header = styled.h1`
+export const Header = styled.h1`
     padding: 50px 0; 
     margin: 0; 
 `
