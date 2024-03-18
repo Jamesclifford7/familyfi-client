@@ -2,8 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import piggyBankIcon from '../images/piggybank2.png'
+import { useNavigate } from 'react-router-dom';
 
 export default function NavBar() {
+    const navigate = useNavigate()
+
+    const handleLogout = (e: any) => {
+        e.preventDefault(); 
+        window.localStorage.clear(); 
+        navigate('/'); 
+    }
+
     return (
         <StyledNav>
             <LogoContainer>
@@ -13,7 +22,7 @@ export default function NavBar() {
             <LinkContainer>
                 <StyledLink to="/account_overview">Account Overview</StyledLink>
                 <StyledLink to="/marketplace">Marketplace</StyledLink>
-                <Logout>Logout</Logout>
+                <LogoutButton onClick={(e) => handleLogout(e)}>Logout</LogoutButton>
             </LinkContainer>
         </StyledNav>
     )
@@ -63,7 +72,7 @@ const StyledLink = styled(Link)`
     }
 `
 
-const Logout = styled.button`
+const LogoutButton = styled.button`
     background: none; 
     border: none; 
     font-size: 16px; 

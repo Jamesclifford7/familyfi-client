@@ -36,29 +36,13 @@ export default function LandingPage() {
                 setUserNotFoundMessage("User not found")
             }
 
-            // const user = {
-            //     id: res.data[0].id, 
-            //     email: res.data[0].email,
-            // }
-
-            console.log(res.data[0])
-
-            // window.localStorage.setItem('user', JSON.stringify(user)); 
-            // context.setUser(user); 
-            // navigate('/'); 
-
+            window.localStorage.setItem('user', res.data.token)
+            setUserNotFoundMessage(""); 
+            navigate('/'); 
         })
         .catch((error) => {
             console.log(error)
         })
-
-        // if (email === "demo@familyfi.com" && password === "Password1") {
-        //     // account overview
-        //     navigate('/account_overview'); 
-        //     setUserNotFoundMessage(""); 
-        // } 
-
-        // setUserNotFoundMessage("User not found"); 
     }
 
     return (
