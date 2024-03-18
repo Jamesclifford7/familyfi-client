@@ -116,7 +116,7 @@ const Container = styled.div`
 const Top = styled.div`
     padding-top: 50px; 
     display: flex; 
-    flex-direction: row; 
+    flex-direction: column; 
     justify-content: space-around; 
     align-items: center; 
 
@@ -125,6 +125,10 @@ const Top = styled.div`
         font-weight: bold; 
         font-family: "Josefin Sans", sans-serif;
         font-style: italic; 
+    }
+
+    @media screen and (min-width: 415px) {
+        flex-direction: row; 
     }
 `
 
@@ -150,7 +154,11 @@ const StyledHeader = styled.h2`
 `
 
 const StyledTextField = styled(TextField)`
-    width: 25%; 
+    width: 90%; 
+
+    @media screen and (min-width: 415px) {
+        width: 25%;
+    }
 `
 
 const TextFieldContainer = styled.div`
@@ -160,6 +168,11 @@ const TextFieldContainer = styled.div`
 
 const StyledButton = styled(Button)`
     background-color: #64F58D; 
+    width: 50%; 
+
+    @media screen and (min-width: 415px) {
+        width: inherit;
+    }
 `
 
 const UserNotFoundContainer = styled.div`
@@ -175,7 +188,7 @@ const CredentialsContainer = styled.div`
     margin: 0 auto; 
     margin-top: 20px; 
     border-radius: 25px; 
-    @media all and (min-width: 640px) {
+    @media all and (min-width: 415px) {
         width: 25%;
     }
 `
