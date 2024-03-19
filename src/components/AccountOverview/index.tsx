@@ -252,6 +252,11 @@ const OverviewRight = styled.div`
         display: inline-block; 
     }
 
+    div:nth-child(2) p {
+        color: red; 
+        font-weight: bold; 
+    }
+
     @media all and (min-width: 515px) {
         width: 40%; 
         margin-top: 0; 
