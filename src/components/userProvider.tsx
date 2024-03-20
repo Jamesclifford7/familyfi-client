@@ -51,7 +51,7 @@ export default function UserProvider(props: {children: JSX.Element}) {
     // Return the user state in the context provider value
     return (
         <UserContext.Provider value={user}>
-        {props.children}
+            {props.children}
         </UserContext.Provider>
     );
 }
