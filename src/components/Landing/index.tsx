@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import '../../fonts/index.css'
 import piggyBankIcon from '../images/piggybank2.png'
 import axios from 'axios'
+import { useUserContext, UserContextProps, UserProps } from '../UserProvider';
 
 interface LoginProps {
     email: string
@@ -14,6 +15,7 @@ interface LoginProps {
 export default function LandingPage() {
     const [userNotFoundMessage, setUserNotFoundMessage] = useState<string>()
     const navigate = useNavigate()
+    const context = useUserContext() as UserContextProps
 
     const handleLogin = (e: any) => {
         e.preventDefault()
@@ -37,7 +39,16 @@ export default function LandingPage() {
             }
 
             window.localStorage.setItem('user', res.data.token); 
+            const reformattedUser: UserProps = {
+                firstName: res.data.user.first_name, 
+                lastName: res.data.user.last_name, 
+                accountCreated: res.data.user.account_created, 
+                ...res.data
+            }
+            context.setUser(reformattedUser)
             setUserNotFoundMessage(""); 
+        })
+        .then(() => {
             navigate('/account_overview'); 
         })
         .catch((error) => {
