@@ -17,6 +17,11 @@ export default function Marketplace() {
 
     const marketplaceBusinesses = useMarketplaceContext()    
 
+        // Filter the marketplace businesses based on the selected category
+    const filteredBusinesses = category
+        ? marketplaceBusinesses.filter((business) => business.category === category)
+        : marketplaceBusinesses;
+
     return (
         <>
             <MobileTop>
@@ -67,7 +72,7 @@ export default function Marketplace() {
             </DesktopTop>
             <Body>
                 {
-                    marketplaceBusinesses.map((business) => {
+                    filteredBusinesses.map((business) => {
                         return <Card key={business.id} href={business.url} target="_blank" rel="noopener noreferrer">
                             <img src={business.logo} alt={business.name} />
                         </Card>
