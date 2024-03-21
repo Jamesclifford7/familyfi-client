@@ -3,14 +3,21 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import piggyBankIcon from '../images/piggybank2.png'
 import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../UserProvider';
+import { UserProps } from '../UserProvider';
 
 export default function NavBar() {
     const navigate = useNavigate()
+    const user = useUserContext() as UserProps
 
     const handleLogout = (e: any) => {
         e.preventDefault(); 
         window.localStorage.clear(); 
         navigate('/'); 
+    }
+
+    if (Object.keys(user).length === 0) {
+        return null
     }
 
     return (
@@ -19,6 +26,7 @@ export default function NavBar() {
                 <LogoContainer>
                     <Logo>FamilyFi</Logo>
                     <PiggyBank src={piggyBankIcon} />
+                    <span>Welcome, {user.firstName}</span>
                 </LogoContainer>
                 <LinkContainer>
                     <StyledLink to="/account_overview">Account Overview</StyledLink>

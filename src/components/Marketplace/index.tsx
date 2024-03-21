@@ -15,8 +15,7 @@ export default function Marketplace() {
         setCategory(event.target.value as string);
     };
 
-    const marketplaceBusinesses = useMarketplaceContext()
-    console.log(marketplaceBusinesses)
+    const marketplaceBusinesses = useMarketplaceContext()    
 
     return (
         <>

@@ -12,15 +12,15 @@ export interface UserProps {
     exp: number
 }
 
-const UserContext = React.createContext<UserProps | undefined>(undefined)
+const UserContext = React.createContext<UserProps | undefined | {}>(undefined)
 
 export default function UserProvider(props: {children: JSX.Element}) {
-    const [user, setUser] = useState<UserProps>()
+    const [user, setUser] = useState<UserProps | {}>({})
 
     useEffect(() => {
         // Fetch user information from API when component mounts
         const token = localStorage.getItem('user');
-
+        
         if (token) {
             axios({
                 method: 'get', 
@@ -33,10 +33,10 @@ export default function UserProvider(props: {children: JSX.Element}) {
             .then((res) => {
                 // Update user state with user information from API response
                 const reformattedUser: UserProps = {
-                    firstName: res.data.user.first_name, 
-                    lastName: res.data.user.last_name, 
-                    accountCreated: res.data.user.account_created, 
-                    ...res.data.user
+                    firstName: res.data.first_name, 
+                    lastName: res.data.last_name, 
+                    accountCreated: res.data.account_created, 
+                    ...res.data
                 }
                 setUser(reformattedUser)
             })

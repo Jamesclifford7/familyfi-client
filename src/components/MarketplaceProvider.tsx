@@ -12,7 +12,7 @@ export interface MarketplaceBusinessProps {
 const MarketplaceContext = React.createContext<MarketplaceBusinessProps[] | undefined>(undefined)
 
 export default function MarketplaceProvider(props: {children: JSX.Element}) {
-    const [marketplaceBusinesses, setMarketplaceBusinesses] = useState<MarketplaceBusinessProps[]>()
+    const [marketplaceBusinesses, setMarketplaceBusinesses] = useState<MarketplaceBusinessProps[]>([])
 
     useEffect(() => {
         // Fetch user information from API when component mounts
@@ -36,7 +36,6 @@ export default function MarketplaceProvider(props: {children: JSX.Element}) {
             });
         }
     }, [])
-
 
     // Return the user state in the context provider value
     return (
