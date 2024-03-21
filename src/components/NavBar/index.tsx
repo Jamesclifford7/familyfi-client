@@ -15,7 +15,7 @@ export default function NavBar() {
         window.localStorage.clear(); 
         navigate('/'); 
     }
-
+    
     if (Object.keys(user).length === 0) {
         return null
     }
@@ -26,7 +26,7 @@ export default function NavBar() {
                 <LogoContainer>
                     <Logo>FamilyFi</Logo>
                     <PiggyBank src={piggyBankIcon} />
-                    <span>Welcome, {user.firstName}</span>
+                    <span>Welcome, {user.firstName}!</span>
                 </LogoContainer>
                 <LinkContainer>
                     <StyledLink to="/account_overview">Account Overview</StyledLink>
@@ -82,6 +82,10 @@ const MobileNav = styled.nav`
 const LogoContainer = styled.div`
     display: flex; 
     align-items: center; 
+
+    span {
+        margin-left: 30px; 
+    }
 `
 
 const Logo = styled.h1`

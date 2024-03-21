@@ -19,27 +19,52 @@ export default function Marketplace() {
 
     return (
         <>
-            <NavBar />
-            <Header>Marketplace</Header>
-            <h3>Total Rewards Balance: $100.00</h3>
-            <StyledFormControl>
-                <InputLabel id="category-select">Category</InputLabel>
-                <Select
-                    labelId="category-select"
-                    id="category"
-                    value={category}
-                    label="Category"
-                    onChange={handleChange}
-                >
-                    <MenuItem value="">All</MenuItem>
-                    <MenuItem value="Baby">Baby</MenuItem>
-                    <MenuItem value="Clothes">Clothes</MenuItem>
-                    <MenuItem value="Education">Education and School Supplies</MenuItem>
-                    <MenuItem value="Extracurricular">Extracurricular Activities</MenuItem>
-                    <MenuItem value="Home">Home, Bath, and Body</MenuItem>
-                    <MenuItem value="Miscellaneous">Miscellaneous</MenuItem>
-                </Select>
-            </StyledFormControl>
+            <MobileTop>
+                <NavBar />
+                <StyledHeader>Marketplace</StyledHeader>
+                <h3>Total Rewards Balance: $100.00</h3>
+                <StyledFormControl>
+                    <InputLabel id="category-select">Category</InputLabel>
+                    <Select
+                        labelId="category-select"
+                        id="category"
+                        value={category}
+                        label="Category"
+                        onChange={handleChange}
+                    >
+                        <MenuItem value="">All</MenuItem>
+                        <MenuItem value="Baby">Baby</MenuItem>
+                        <MenuItem value="Clothes">Clothes</MenuItem>
+                        <MenuItem value="Education">Education and School Supplies</MenuItem>
+                        <MenuItem value="Extracurricular">Extracurricular Activities</MenuItem>
+                        <MenuItem value="Home">Home, Bath, and Body</MenuItem>
+                        <MenuItem value="Miscellaneous">Miscellaneous</MenuItem>
+                    </Select>
+                </StyledFormControl>
+            </MobileTop>
+            <DesktopTop>
+                <NavBar />
+                <Header>Marketplace</Header>
+                <h3>Total Rewards Balance: $100.00</h3>
+                <StyledFormControl>
+                    <InputLabel id="category-select">Category</InputLabel>
+                    <Select
+                        labelId="category-select"
+                        id="category"
+                        value={category}
+                        label="Category"
+                        onChange={handleChange}
+                    >
+                        <MenuItem value="">All</MenuItem>
+                        <MenuItem value="Baby">Baby</MenuItem>
+                        <MenuItem value="Clothes">Clothes</MenuItem>
+                        <MenuItem value="Education">Education and School Supplies</MenuItem>
+                        <MenuItem value="Extracurricular">Extracurricular Activities</MenuItem>
+                        <MenuItem value="Home">Home, Bath, and Body</MenuItem>
+                        <MenuItem value="Miscellaneous">Miscellaneous</MenuItem>
+                    </Select>
+                </StyledFormControl>
+            </DesktopTop>
             <Body>
                 {
                     marketplaceBusinesses.map((business) => {
@@ -53,22 +78,66 @@ export default function Marketplace() {
     )
 }
 
+const StyledHeader = styled(Header)`
+    margin: 0; 
+    padding: 25px; 
+
+    @media all and (min-width: 415px) {
+        margin: auto; 
+    }
+`
+
+const MobileTop = styled.div`
+    display: inherit; 
+    position: fixed; 
+    border-bottom: solid 0.5px #000000; 
+    z-index: 1; 
+    margin: 0 auto; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    background-color: inherit; 
+    padding-bottom: 20px; 
+
+    @media all and (min-width: 415px) {
+        display: none; 
+    }
+`
+
+const DesktopTop = styled.div`
+    display: none; 
+
+    @media all and (min-width: 415px) {
+        display: inherit; 
+    }
+`
+
 const StyledFormControl = styled(FormControl)`
-    width: 40%; 
+    width: 80%; 
+
+    @media all and (min-width: 415px) {
+        width: 40%; 
+    }
 `
 
 const Body = styled.div`
     width: 90%; 
     margin: 0 auto; 
-    margin-top: 50px; 
+    margin-top: 250px; 
     display: flex; 
     flex-wrap: wrap; 
-    flex-direction: row; 
+    flex-direction: column; 
     justify-content: space-between; 
+    
+
+    @media all and (min-width: 415px) {
+     flex-direction: row;  
+     margin-top: 50px;  
+    }
 `
 
 const Card = styled.a`
-    width: 30%; 
+    width: 100%; 
     border: solid 1px #000000; 
     border-radius: 20px; 
     background-color: #ffffff; 
@@ -79,5 +148,9 @@ const Card = styled.a`
         height: 100%; 
         width: 100%; 
         border-radius: 20px; 
+    }
+
+    @media all and (min-width: 415px) {
+        width: 20%;    
     }
 `

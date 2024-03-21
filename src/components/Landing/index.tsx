@@ -36,7 +36,7 @@ export default function LandingPage() {
                 setUserNotFoundMessage("User not found")
             }
 
-            window.localStorage.setItem('user', res.data.token)
+            window.localStorage.setItem('user', res.data.token); 
             setUserNotFoundMessage(""); 
             navigate('/account_overview'); 
         })
