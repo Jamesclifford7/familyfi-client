@@ -39,12 +39,15 @@ export default function LandingPage() {
             }
 
             window.localStorage.setItem('user', res.data.token); 
+            const { account_created, first_name, last_name, ...rest } = res.data.user;
+
             const reformattedUser: UserProps = {
                 firstName: res.data.user.first_name, 
                 lastName: res.data.user.last_name, 
                 accountCreated: res.data.user.account_created, 
-                ...res.data
+                ...rest
             }
+            
             context.setUser(reformattedUser)
             setUserNotFoundMessage(""); 
         })

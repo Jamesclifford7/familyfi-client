@@ -37,12 +37,14 @@ export default function UserProvider(props: {children: JSX.Element}) {
                 }
             })
             .then((res) => {
+                const { account_created, first_name, last_name, ...rest } = res.data;
+
                 // Update user state with user information from API response
                 const reformattedUser: UserProps = {
                     firstName: res.data.first_name, 
                     lastName: res.data.last_name, 
                     accountCreated: res.data.account_created, 
-                    ...res.data
+                    ...rest
                 }
                 setUser(reformattedUser); 
                 setLoading(false); 
