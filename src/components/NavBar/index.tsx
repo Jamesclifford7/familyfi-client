@@ -43,16 +43,21 @@ export default function NavBar() {
 }
 
 const DesktopNav = styled.nav`
-    border-bottom: solid #000000; 
-    background-color: #64F58D; 
-    display: none; 
-    margin: 0; 
-    padding: 15px 0; 
-    width: 100%; 
-    justify-content: space-between; 
+    display: none;  
 
     @media all and (min-width: 415px) {
         display: flex; 
+        flex-wrap: wrap; 
+        border-bottom: solid #000000; 
+        background-color: #64F58D;
+        margin: 0; 
+        padding: 15px 0; 
+        width: 100%; 
+        justify-content: space-between; 
+    }
+
+    @media all and (min-width: 415px) and (max-width: 750px) {
+        justify-content: center; 
     }
 `
 

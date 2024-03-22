@@ -187,6 +187,7 @@ const StyledLink = styled(Link)`
     color: #000000; 
     margin-bottom: 20px; 
     margin-right: 0; 
+    padding: 0 20px; 
 
     svg {
         margin-right: 10px; 
@@ -197,7 +198,6 @@ const StyledLink = styled(Link)`
     }
 
     @media all and (min-width: 515px) {
-        margin-right: 50px; 
         margin-bottom: 0; 
     }
 `
