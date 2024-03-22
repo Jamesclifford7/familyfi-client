@@ -190,7 +190,7 @@ const Top = styled.div`
         font-style: italic; 
     }
 
-    @media screen and (min-width: 415px) {
+    @media screen and (min-width: 825px) {
         flex-direction: row; 
     }
 `
@@ -219,7 +219,7 @@ const Body = styled.div`
         margin-top: 25px; 
     }
 
-    @media all and (min-width: 415px) {
+    @media all and (min-width: 825px) {
         h1 {
             margin-top: 75px; 
         }
@@ -247,13 +247,13 @@ const BodyTop = styled.div`
         margin: 0 auto; 
     }
 
-    @media all and (min-width: 415px) {
+    @media all and (min-width: 825px) {
         flex-direction: row; 
         margin-top: 50px;
 
         img {
             width: 40%; 
-            margin-bottom: 0; 
+            max-height: 500px;
         }
 
         p {
@@ -284,7 +284,7 @@ const BodyMiddle = styled.div`
         width: 100%; 
     }
 
-    @media all and (min-width: 415px) {
+    @media all and (min-width: 825px) {
         flex-direction: row; 
 
         div {
@@ -314,7 +314,7 @@ const BodyBottom = styled.div`
         }
     }
 
-    @media all and (min-width: 415px) {
+    @media all and (min-width: 825px) {
         flex-direction: row;
         padding: 40px 0; 
 
@@ -352,7 +352,7 @@ const StyledHeader = styled.h2`
 const StyledTextField = styled(TextField)`
     width: 90%; 
 
-    @media screen and (min-width: 415px) {
+    @media screen and (min-width: 825px) {
         width: 25%;
     }
 `
@@ -366,7 +366,7 @@ const StyledButton = styled(Button)`
     background-color: #64F58D; 
     width: 50%; 
 
-    @media screen and (min-width: 415px) {
+    @media screen and (min-width: 825px) {
         width: inherit;
     }
 `
@@ -384,7 +384,8 @@ const CredentialsContainer = styled.div`
     margin: 0 auto; 
     margin-top: 20px; 
     border-radius: 25px; 
-    @media all and (min-width: 415px) {
+
+    @media all and (min-width: 825px) {
         width: 25%;
     }
 `
