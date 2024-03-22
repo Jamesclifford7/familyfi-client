@@ -216,54 +216,96 @@ const Body = styled.div`
     width: 75%; 
 
     h1 {
-        margin-top: 75px; 
+        margin-top: 25px; 
+    }
+
+    @media all and (min-width: 415px) {
+        h1 {
+            margin-top: 75px; 
+        }
     }
 `
 
 const BodyTop = styled.div`
     display: flex; 
-    flex-direction: row; 
+    flex-direction: column; 
     justify-content: space-between; 
-    margin-top: 50px; 
+    margin-top: 0; 
 
     img {
         height: auto; 
-        width: 40%; 
+        width: 90%; 
+        margin: 0 auto; 
+        margin-bottom: 20px; 
     }
 
     p {
-        width: 40%; 
+        width: 90%; 
         font-weight: 500; 
         line-height: 35px; 
         font-size: 18px; 
+        margin: 0 auto; 
+    }
+
+    @media all and (min-width: 415px) {
+        flex-direction: row; 
+        margin-top: 50px;
+
+        img {
+            width: 40%; 
+            margin-bottom: 0; 
+        }
+
+        p {
+            width: 40%;
+        }
     }
 `
 
 const BodyMiddle = styled.div`
     display: flex; 
-    flex-direction: row; 
+    flex-direction: column; 
     justify-content: space-between; 
     margin: 25px 0; 
+
+
 
     div:first-child {
         display: flex; 
         align-items: center; 
     }
 
+    h2 {
+        margin: 25px auto; 
+
+    }
+
     div {
-        width: 40%; 
+        width: 100%; 
+    }
+
+    @media all and (min-width: 415px) {
+        flex-direction: row; 
+
+        div {
+            width: 40%;
+        }
+
+        h2 {
+            margin: auto; 
+        }
     }
 `
 
 const BodyBottom = styled.div`
     display: flex; 
-    flex-direction: row; 
-    justify-content: space-around; 
-    padding: 40px 0; 
+    flex-direction: column; 
+    justify-content: space-between; 
 
     div {
-        width: 30%; 
-        margin-right: 10px; 
+        width: 100%; 
+        margin-bottom: 20px; 
+        margin: 0 0 20px 0; 
 
         img {
             width: 100%; 
@@ -271,16 +313,24 @@ const BodyBottom = styled.div`
             border-radius: 25px;
         }
     }
+
+    @media all and (min-width: 415px) {
+        flex-direction: row;
+        padding: 40px 0; 
+
+        div {
+            width: 20%;  
+        }
+    }
 `
 
 const Card = styled.div`
     background-color: #64F58D; 
     border: solid; 
-    border-width: 0.8px; 
     margin: 0 auto; 
     margin-bottom: 20px; 
     border-radius: 25px; 
-    padding: 40px 20px; 
+    padding: 40px 0; 
     width: 100% !important;
     display: inline-block !important; 
 
@@ -290,6 +340,7 @@ const Card = styled.div`
 
     p {
         line-height: 25px; 
+        padding: 0 10px; 
     }
 `
 
