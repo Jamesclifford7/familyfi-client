@@ -155,7 +155,11 @@ const Card = styled.a`
         border-radius: 20px; 
     }
 
-    @media all and (min-width: 415px) {
-        width: 20%;    
+    @media all and (min-width: 800px) {
+        width: 20%; 
+    }
+
+    @media all and (min-width: 415px) and (max-width: 800px) {
+        width: 30%; 
     }
 `
