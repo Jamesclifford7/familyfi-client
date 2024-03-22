@@ -6,6 +6,13 @@ import '../../fonts/index.css'
 import piggyBankIcon from '../images/piggybank2.png'
 import axios from 'axios'
 import { useUserContext, UserContextProps, UserProps } from '../UserProvider';
+import creditCardImage from '../images/credit-card-vector-graphic.png'
+import { faDollarSign, faMagnifyingGlass, faBoltLightning } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import huggiesLogo from '../images/BrandLogos/huggies.gif'
+import levisLogo from '../images/BrandLogos/levis.jpeg'
+import officeDepotLogo from '../images/BrandLogos/office-depot.webp'
+import dicksLogo from '../images/BrandLogos/dicks.jpeg'
 
 interface LoginProps {
     email: string
@@ -60,7 +67,7 @@ export default function LandingPage() {
     }
 
     return (
-        <Container>
+        <>
             <Top>
                 <LogoContainer>
                     <Logo>FamilyFi</Logo>
@@ -68,6 +75,51 @@ export default function LandingPage() {
                 </LogoContainer>
                 <p>The Credit Card Designed For Young Families</p>
             </Top>
+            <Body>
+                <Logo>Raising a family is more expensive than ever. We're here to help. </Logo>
+                <BodyTop>
+                    <img src={creditCardImage} alt="credit card clip art" />
+                    <p>FamilyFi is a mobile-first credit card designed to ease the rising cost of raising a family. 
+                        On average, it costs $20,000 a year to raise a child; a 40% increase over the past decade. 
+                        FamilyFi allows you to use rewards on childrearing-related products in our exclusive marketplace, 
+                        allowing you to save on family-related purchases while building credit.
+                    </p>
+                </BodyTop>
+                <BodyMiddle>
+                    <div>
+                        <h2>Shop. Save. Build Credit.</h2>
+                    </div>
+                    <div>
+                        <Card>
+                            <FontAwesomeIcon icon={faDollarSign} />
+                            <p>Earn cash back rewards while you spend.</p>
+                        </Card>
+                        <Card>
+                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            <p>Find deals, use rewards, and save on essential products in our FamilyFi marketplace.</p>
+                        </Card>
+                        <Card>
+                            <FontAwesomeIcon icon={faBoltLightning} />
+                            <p>All while building credit.</p>
+                        </Card>
+                    </div>
+                </BodyMiddle>
+                <StyledHeader>Shop Marketplace Brands</StyledHeader>
+                <BodyBottom>
+                    <div>
+                        <img src={huggiesLogo} alt="huggies" />
+                    </div>
+                    <div>
+                        <img src={levisLogo} alt="levis" />
+                    </div>
+                    <div>
+                        <img src={officeDepotLogo} alt="office depot" />
+                    </div>
+                    <div>
+                        <img src={dicksLogo} alt="dicks" />
+                    </div>
+                </BodyBottom>
+            </Body>
             <StyledHeader>Sign In</StyledHeader>
             <form onSubmit={(e) => handleLogin(e)}>
                 <TextFieldContainer>
@@ -109,7 +161,7 @@ export default function LandingPage() {
                 <p>Email: demo@familyfi.com</p>
                 <p>Password: Password!1</p>
             </CredentialsContainer>
-        </Container>
+        </>
     )
 }
 
@@ -123,10 +175,6 @@ function UserNotFound(props: {userNotFoundMessage: string | undefined}) {
     )
 }
 
-const Container = styled.div`
-    height: 100vh; 
-`
-
 const Top = styled.div`
     padding-top: 50px; 
     display: flex; 
@@ -138,6 +186,7 @@ const Top = styled.div`
         display: inline-block; 
         font-weight: bold; 
         font-family: "Josefin Sans", sans-serif;
+        color: #01BAEF; 
         font-style: italic; 
     }
 
@@ -160,6 +209,88 @@ const PiggyBank = styled.img`
 const LogoContainer = styled.div`
     display: flex; 
     align-items: center; 
+`
+
+const Body = styled.div`
+    margin: 0 auto; 
+    width: 75%; 
+
+    h1 {
+        margin-top: 75px; 
+    }
+`
+
+const BodyTop = styled.div`
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; 
+    margin-top: 50px; 
+
+    img {
+        height: auto; 
+        width: 40%; 
+    }
+
+    p {
+        width: 40%; 
+        font-weight: 500; 
+        line-height: 35px; 
+        font-size: 18px; 
+    }
+`
+
+const BodyMiddle = styled.div`
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; 
+    margin: 25px 0; 
+
+    div:first-child {
+        display: flex; 
+        align-items: center; 
+    }
+
+    div {
+        width: 40%; 
+    }
+`
+
+const BodyBottom = styled.div`
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-around; 
+    padding: 40px 0; 
+
+    div {
+        width: 30%; 
+        margin-right: 10px; 
+
+        img {
+            width: 100%; 
+            height: 150px; 
+            border-radius: 25px;
+        }
+    }
+`
+
+const Card = styled.div`
+    background-color: #64F58D; 
+    border: solid; 
+    border-width: 0.8px; 
+    margin: 0 auto; 
+    margin-bottom: 20px; 
+    border-radius: 25px; 
+    padding: 40px 20px; 
+    width: 100% !important;
+    display: inline-block !important; 
+
+    svg {
+        height: 25px; 
+    }
+
+    p {
+        line-height: 25px; 
+    }
 `
 
 const StyledHeader = styled.h2`
