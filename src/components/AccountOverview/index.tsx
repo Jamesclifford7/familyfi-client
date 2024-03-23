@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NavBar from '../NavBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCreditCard, faDollarSign, faEye, faKey, faHandshake, faLink } from '@fortawesome/free-solid-svg-icons'
@@ -6,6 +6,11 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export default function AccountOverview() {
+
+    useEffect(() => {
+        // Scroll to the top of the page
+        window.scrollTo(0, 0);
+    }, [])
 
     return (
         <>
