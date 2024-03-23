@@ -55,7 +55,8 @@ export default function LandingPage() {
                 ...rest
             }
             
-            context.setUser(reformattedUser)
+            context.setUser(reformattedUser); 
+            context.setToken(res.data.token); 
             setUserNotFoundMessage(""); 
         })
         .then(() => {

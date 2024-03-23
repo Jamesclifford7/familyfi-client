@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import { useUserContext, UserContextProps } from './UserProvider'
 
 export interface MarketplaceBusinessProps {
     id: number
@@ -13,10 +14,11 @@ const MarketplaceContext = React.createContext<MarketplaceBusinessProps[] | unde
 
 export default function MarketplaceProvider(props: {children: JSX.Element}) {
     const [marketplaceBusinesses, setMarketplaceBusinesses] = useState<MarketplaceBusinessProps[]>([])
+    const user = useUserContext() as UserContextProps
 
     useEffect(() => {
         // Fetch user information from API when component mounts
-        const token = localStorage.getItem('user');
+        const token = localStorage.getItem('user') || user.token;
 
         if (token) {
             axios({

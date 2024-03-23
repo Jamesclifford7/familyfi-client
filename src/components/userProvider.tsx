@@ -15,12 +15,15 @@ export interface UserProps {
 export interface UserContextProps {
     user: UserProps
     setUser: Dispatch<SetStateAction<{}>>
+    token: string, 
+    setToken: Dispatch<SetStateAction<{}>>
 }
 
 const UserContext = React.createContext<UserContextProps | undefined | {}>(undefined)
 
 export default function UserProvider(props: {children: JSX.Element}) {
     const [user, setUser] = useState<UserProps | {}>({})
+    const [token, setToken] = useState<string>("")
     const [loading, setLoading] = useState<boolean>(true)
 
     useEffect(() => {
@@ -68,7 +71,9 @@ export default function UserProvider(props: {children: JSX.Element}) {
     return (
         <UserContext.Provider value={{
             user, 
-            setUser
+            setUser, 
+            token, 
+            setToken,
         }}>
             {props.children}
         </UserContext.Provider>

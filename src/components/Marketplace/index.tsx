@@ -16,7 +16,7 @@ export default function Marketplace() {
     };
 
     const marketplaceBusinesses = useMarketplaceContext()    
-
+    
         // Filter the marketplace businesses based on the selected category
     const filteredBusinesses = category
         ? marketplaceBusinesses.filter((business) => business.category === category)
