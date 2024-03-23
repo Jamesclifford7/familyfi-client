@@ -37,7 +37,7 @@ export default function MarketplaceProvider(props: {children: JSX.Element}) {
                 console.error('Error fetching user information:', error);
             });
         }
-    }, [])
+    }, [user])
 
     // Return the user state in the context provider value
     return (
