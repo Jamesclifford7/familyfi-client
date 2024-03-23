@@ -31,7 +31,7 @@ export default function LandingPage() {
 
         axios({
             method: 'post', 
-            url: `${process.env.REACT_APP_API_URL}/login`, 
+            url: `${process.env.REACT_APP_HEROKU_API_URL}/login`, 
             headers: {
                 'content-type': 'application/json'
             },

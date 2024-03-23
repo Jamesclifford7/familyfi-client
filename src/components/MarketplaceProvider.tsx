@@ -21,7 +21,7 @@ export default function MarketplaceProvider(props: {children: JSX.Element}) {
         if (token) {
             axios({
                 method: 'get', 
-                url: `${process.env.REACT_APP_API_URL}/marketplace`, 
+                url: `${process.env.REACT_APP_HEROKU_API_URL}/marketplace`, 
                 headers: {
                     'content-type': 'application/json',
                     'authorization': `Bearer ${token}` // Include JWT token in request headers

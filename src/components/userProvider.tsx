@@ -30,7 +30,7 @@ export default function UserProvider(props: {children: JSX.Element}) {
         if (token) {
             axios({
                 method: 'get', 
-                url: `${process.env.REACT_APP_API_URL}/user`, 
+                url: `${process.env.REACT_APP_HEROKU_API_URL}/user`, 
                 headers: {
                     'content-type': 'application/json',
                     'authorization': `Bearer ${token}` // Include JWT token in request headers
