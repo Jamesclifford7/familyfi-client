@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import NavBar from '../NavBar'
 import { Header } from '../AccountOverview'
 import InputLabel from '@mui/material/InputLabel'
@@ -6,29 +6,76 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, {SelectChangeEvent} from '@mui/material/Select'
 import styled from 'styled-components'
-import { useMarketplaceContext } from '../MarketplaceProvider'
-import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { useUserContext, UserContextProps } from '../UserProvider'
+
+interface DealCategory {
+    category: Deal[],
+}
+
+interface Deal {
+    position: number, 
+    title: string, 
+    link: string, 
+    price: string, 
+    old_price: string, 
+    source: string, 
+    thumbnail: string,
+    extensions: string[]
+}
 
 export default function Marketplace() {
     const [category, setCategory] = useState<string | "">("")
+    const [deals, setDeals] = useState<DealCategory[]>([])
+    const user = useUserContext() as UserContextProps
 
     const handleChange = (event: SelectChangeEvent) => {
         setCategory(event.target.value as string);
     };
 
-    const marketplaceBusinesses = useMarketplaceContext()    
-    
-        // Filter the marketplace businesses based on the selected category
-    const filteredBusinesses = category
-        ? marketplaceBusinesses.filter((business) => business.category === category)
-        : marketplaceBusinesses;
+    useEffect(() => {
+        // Fetch user information from API when component mounts
+        const token = localStorage.getItem('user') || user.token;
+
+        if (token) {
+            axios({
+                method: 'get', 
+                url: `${process.env.REACT_APP_HEROKU_API_URL}/deals`, 
+                headers: {
+                    'content-type': 'application/json',
+                    'authorization': `Bearer ${token}`, // Include JWT token in request headers
+                }
+            })
+            .then((res) => {
+                setDeals(res.data)
+            })
+            .catch(error => {
+                // Handle error
+                console.error('Error fetching user information:', error);
+            });
+        }
+    }, [user])
+
+    const allDeals = deals.flatMap(category => {
+        const categoryName = Object.keys(category)[0];
+        const dealsArray = Object.values(category)[0] as Deal[]; 
+        return dealsArray.map(deal => ({
+          category: categoryName,
+          deal: deal
+        }));
+      });
+
+    const filteredDeals = allDeals.filter(deal => deal.category === category);
+
+    if (deals.length === 0) {
+        return <>...loading</>
+    }
 
     return (
         <>
             <MobileTop>
                 <NavBar />
-                <StyledHeader>Marketplace</StyledHeader>
-                <StyledLink to="/deals">Deals!</StyledLink>
+                <StyledHeader>Marketplace Deals</StyledHeader>
                 <h3>Total Rewards Balance: $100.00</h3>
                 <StyledFormControl>
                     <InputLabel id="category-select">Category</InputLabel>
@@ -51,8 +98,7 @@ export default function Marketplace() {
             </MobileTop>
             <DesktopTop>
                 <NavBar />
-                <Header>Marketplace</Header>
-                <StyledLink to="/deals">Deals!</StyledLink>
+                <Header>Marketplace Deals</Header>
                 <h3>Total Rewards Balance: $100.00</h3>
                 <StyledFormControl>
                     <InputLabel id="category-select">Category</InputLabel>
@@ -74,13 +120,33 @@ export default function Marketplace() {
                 </StyledFormControl>
             </DesktopTop>
             <Body>
-                {
-                    filteredBusinesses.map((business) => {
-                        return <Card key={business.id} href={business.url} target="_blank" rel="noopener noreferrer">
-                            <img src={business.logo} alt={business.name} />
+            {
+                category === "" 
+                ? allDeals.map((deal, idx) => {
+                    return (
+                        <Card key={idx}>
+                            <a href={deal.deal.link} target="_blank" rel="noopener noreferrer">
+                                <img src={deal.deal.thumbnail} alt={deal.deal.source} />
+                            </a>
+                            <h3>{deal.deal.title}</h3>
+                            <h4>{deal.deal.price}</h4>
+                            {deal.deal.old_price ? <h4>{deal.deal.old_price}</h4> : <span>{deal.deal.extensions}</span>}
                         </Card>
-                    })
-                }
+                    );
+                })
+                : filteredDeals.map((deal, idx) => {
+                    return (
+                        <Card key={idx}>
+                            <a href={deal.deal.link} target="_blank" rel="noopener noreferrer">
+                                <img src={deal.deal.thumbnail} alt={deal.deal.source} />
+                            </a>
+                            <h3>{deal.deal.title}</h3>
+                            <h4>{deal.deal.price}</h4>
+                            {deal.deal.old_price ? <h4>{deal.deal.old_price}</h4> : <span>{deal.deal.extensions}</span>}
+                        </Card>
+                    );
+                })
+            }
             </Body>
         </>
     )
@@ -92,14 +158,6 @@ const StyledHeader = styled(Header)`
 
     @media all and (min-width: 415px) {
         margin: auto; 
-    }
-`
-
-const StyledLink = styled(Link)`
-    text-decoration: none; 
-    color: red; 
-    &:hover {
-        text-decoration: underline; 
     }
 `
 
@@ -152,18 +210,27 @@ const Body = styled.div`
     }
 `
 
-const Card = styled.a`
+const Card = styled.div`
     width: 100%; 
     border: solid 1px #000000; 
     border-radius: 20px; 
     background-color: #ffffff; 
-    height: 200px; 
+    height: 400px; 
     margin-bottom: 25px; 
 
     img {
-        height: 100%; 
+        max-height: 200px;
+        height: auto; 
         width: 100%; 
         border-radius: 20px; 
+    }
+
+    h4:nth-child(3) {
+        color: red; 
+    }
+
+    h4:nth-child(4) {
+        text-decoration: line-through; 
     }
 
     @media all and (min-width: 800px) {
