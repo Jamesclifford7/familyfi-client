@@ -76,6 +76,7 @@ export default function Marketplace() {
             <MobileTop>
                 <NavBar />
                 <StyledHeader>Marketplace Deals</StyledHeader>
+                <p>*This page makes use of a free API - if no sale items are displayed it has already been maxed out this month by someone else</p>
                 <h3>Total Rewards Balance: $100.00</h3>
                 <StyledFormControl>
                     <InputLabel id="category-select">Category</InputLabel>
@@ -99,6 +100,7 @@ export default function Marketplace() {
             <DesktopTop>
                 <NavBar />
                 <Header>Marketplace Deals</Header>
+                <p>*This page makes use of a free API - if no sale items are displayed it has already been maxed out this month by someone else</p>
                 <h3>Total Rewards Balance: $100.00</h3>
                 <StyledFormControl>
                     <InputLabel id="category-select">Category</InputLabel>
@@ -173,6 +175,10 @@ const MobileTop = styled.div`
     background-color: inherit; 
     padding-bottom: 20px; 
 
+    p {
+        font-style: italic; 
+    }
+
     @media all and (min-width: 415px) {
         display: none; 
     }
@@ -180,6 +186,10 @@ const MobileTop = styled.div`
 
 const DesktopTop = styled.div`
     display: none; 
+
+    p {
+        font-style: italic; 
+    }
 
     @media all and (min-width: 415px) {
         display: inherit; 
